@@ -22,7 +22,6 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <thread>
-#include <sys/prctl.h>
 #include <netinet/in.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -227,7 +226,7 @@ bool Jtag::open_proxy() {
       continue;
     }
 
-    if(bind(proxy_socket_in, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
+    if(::bind(proxy_socket_in, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
       port++;
       continue;
     }

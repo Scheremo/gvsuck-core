@@ -63,7 +63,8 @@ int main(int argc, char *argv[])
     }
 #endif
 
-    gv::GvsocConf conf = { .config_path=config_path };
+    gv::GvsocConf conf = gv::GvsocConf();
+    conf.config_path=config_path;
     gv::Gvsoc *gvsoc = gv::gvsoc_new(&conf);
     gvsoc->open();
     gvsoc->start();

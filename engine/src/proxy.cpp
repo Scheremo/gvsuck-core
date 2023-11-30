@@ -41,7 +41,6 @@
 #include <regex>
 #include <sys/types.h>
 #include <unistd.h>
-#include <sys/prctl.h>
 #include <vp/proxy.hpp>
 #include <vp/launcher.hpp>
 #include "vp/top.hpp"
@@ -355,7 +354,7 @@ int gv::GvProxy::open(int port, int *out_port)
             return -1;
         }
 
-        if (bind(this->telnet_socket, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
+        if (::bind(this->telnet_socket, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
             fprintf(stderr, "Unable to bind the socket: %s\n", strerror(errno));
             return -1;
         }

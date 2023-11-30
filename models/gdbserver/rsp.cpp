@@ -22,7 +22,6 @@
 #include "rsp.hpp"
 #include "gdbserver.hpp"
 #include <sys/socket.h>
-#include <sys/prctl.h>
 #include <netinet/in.h>
 #include <unistd.h>
 
@@ -766,7 +765,7 @@ int Rsp::open_proxy(int port)
             continue;
         }
 
-        if(bind(this->proxy_socket_in, (struct sockaddr *)&addr, sizeof(addr)) == -1)
+        if(::bind(this->proxy_socket_in, (struct sockaddr *)&addr, sizeof(addr)) == -1)
         {
             port++;
             continue;
